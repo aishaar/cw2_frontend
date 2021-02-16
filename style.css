@@ -1,0 +1,219 @@
+body
+{
+    margin: 20px;
+    padding: 20px;
+    background-color: peachpuff;
+}
+
+h1
+{
+    text-align: center;
+    font-size: 45px;
+    font-family: Arial;
+}
+
+.main-lesson-box
+{
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid black;
+    height: 2800px;
+    background-color: sandybrown;
+}
+
+.check-btn
+{
+    font-size:16px;
+    position: relative;
+    left: 90%;
+    height: 40px;
+    background-color: lightblue;
+}
+
+#sort-box
+{
+    border: 2px solid black;
+    margin: 20px;
+    padding: 20px;
+    width: 20%;
+    height: 270px;
+    position:relative;
+    top: 30px;
+    background-color: lightyellow;
+}
+
+label
+{
+    font-size:18px;
+}
+
+.sort-btn
+{
+    margin:5px;
+    font-size: 16px;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+    background-color: lightpink;
+    
+}
+
+#sort-prompt
+{
+    font-size: 18px;
+    font-weight:bold;
+}
+
+#lesson-box
+{
+    border: 2px solid black;
+    width: 30%;
+    margin: 15px;
+    padding: 10px;
+    position: relative;
+    float:left;
+    left: 27%;
+    bottom: 320px;
+    background-color: rgb(223, 140, 102);
+}
+
+h2
+{
+    text-align : center;
+}
+
+.location-lesson
+{
+    font-style: italic;
+    font-size: 19px;
+    text-align:center;
+}
+
+.lesson-info
+{
+    font-size: 18px;
+    text-align: center;
+    
+}
+
+.add-btn
+{
+    position: relative;
+    left: 27%;
+    text-align: center;
+    width: 50%;
+    height: 40px;
+    background-color: lightpink;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+/*---------------------------------------------shopping cart page-----------------------------------------------------------*/
+
+.shop-main-div
+{
+    position: relative;
+    height: 500px;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid black;
+    height: auto;
+    background-color: sandybrown;
+
+}
+
+.back-btn
+{
+    height: 45px;
+    background-color: lightsalmon;
+}
+
+#empty-cart
+{
+    border: 2px dashed black;
+    margin: 20px;
+    padding: 20px; 
+    position:relative;
+    background-color: peachpuff;
+}
+#lesson-cart-box
+{
+    border: 2px solid black;
+    width: 25%;
+    margin: 15px;
+    padding: 10px;
+    position:relative;
+    display:inline-block; 
+    background-color: rgb(223, 140, 102);
+    left: 5%;
+    
+}
+
+#checkout-div
+{
+    border: 2px solid black;
+    padding: 20px;
+    margin:20px; 
+    background-color: rgb(184, 172, 172);;
+
+}
+
+#empty-msg
+{
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+/*--------order information -----------*/
+
+.check-head
+{
+    font-size: 37px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.order-info
+{
+    position: relative;
+    display:inline;
+    margin:10px;
+}
+strong
+{
+    font-size: 16px;
+    margin: 5px;
+}
+.order-input
+{
+    font-size: 16px;
+}
+
+.confirm-btn
+{
+    font-size: 16px;
+    text-align: center;
+    width: 15%;
+    height: 40px;
+    background-color: rgba(123, 216, 105, 0.911);
+}
+
+.confirm-btn:disabled
+{
+    background-color: lightgrey;
+}
+
+
+.remove-btn
+{
+    position: relative;
+    left: 27%;
+    text-align: center;
+    width: 50%;
+    height: 40px;
+    background-color: rgb(228, 81, 81);
+    border-radius: 10px;
+    font-size: 14px;
+}
