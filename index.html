@@ -3,7 +3,7 @@
         <title> Learning Beyond </title>
         <script src = "https://unpkg.com/vue"></script>
         <!-- link to the js file containing list of lessons-->
-        <script src = "lessons.js"></script>
+        <!--<script src = "lessons.js"></script>-->
         <!-- link to external css-->
         <link href = "style.css" rel = "stylesheet" type="text/css">
         <!-- link to font awesome , used for icons -->
@@ -127,7 +127,8 @@
                 el: "#app",
                 data: {
                     sitename: "Learning Beyond",
-                    lesson: lessons,
+                    //lesson: lessons,
+                    lesson: [],
                     cart: [],  //the array that holds the items added to cart.
                     showProductPage : true,
                     attribute: '',  //the attribute that is chosen to sort the products
@@ -137,8 +138,7 @@
                         lastName: "",
                         phoneNum: ""
                     },
-                    emptyCart: false //checks if the cart is empty 
-                    
+                    emptyCart: false //checks if the cart is empty
                 },
                 methods:{
                     //adds the item to cart array
@@ -291,8 +291,14 @@
                     backToLessonPage()
                     {
                         this.showProductPage = true;
+                    },
+                    retrieveLessons()
+                    {   //fetch('https://learningbeyond.herokuapp.com/collection/lessons')
+                        fetch('http://localhost:3000/collection/lessons')
+                            .then(response => response.json())
+                            .then(data => this.lesson = data)
+                            .catch(err => console.log(err));
                     }
-
                 },
                 computed:{
                     //returns the item number in cart
@@ -321,6 +327,10 @@
                         }
                     }
                 },
+                mounted()
+                {
+                    this.retrieveLessons();
+                }
             });
         </script>
     </body>
