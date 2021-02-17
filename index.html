@@ -108,7 +108,7 @@
                             <input v-model.number="order.phoneNum" type = "number" required class = "order-input"/>
                         </p>
                         <!-- when confirmed, thank you message is displayed-->
-                        <button v-on:click="showThankYou" v-if="canConfirmOrder" class = "confirm-btn">
+                        <button v-on:click="confirmCheckout" v-if="canConfirmOrder" class = "confirm-btn">
                             <span class="fas fa-check"></span> 
                             Confirm Order 
                         </button>
@@ -136,7 +136,7 @@
                     {
                         firstName: "",
                         lastName: "",
-                        phoneNum: ""
+                        phoneNum: "",
                     },
                     emptyCart: false //checks if the cart is empty
                 },
@@ -152,11 +152,7 @@
                     {
                         this.showProductPage = this.showProductPage ? false : true;
                     },
-                    //displays message when order is confirmed
-                    showThankYou()
-                    {
-                        alert("Thank you for shopping. Your order has been confirmed.");
-                    },
+                    
                     //checks whether the item can be added based on the availability.
                     canAddToCart(lesson)
                     {
@@ -292,13 +288,56 @@
                     {
                         this.showProductPage = true;
                     },
+                    //gets all the lessons from the database
                     retrieveLessons()
-                    {   //fetch('https://learningbeyond.herokuapp.com/collection/lessons')
-                        fetch('http://localhost:3000/collection/lessons')
+                    {   fetch('https://learningbeyond.herokuapp.com/collection/lessons')
+                        //fetch('http://localhost:3000/collection/lessons')
                             .then(response => response.json())
                             .then(data => this.lesson = data)
-                            .catch(err => console.log(err));
-                    }
+                            .catch(error => console.log(error));
+                    },
+                    //adds a new order to the order collection
+                    addOrder(body)
+                    {
+                        fetch('https://learningbeyond.herokuapp.com/collection/orders', {
+                            method: 'POST',
+                            headers: { 'Content-Type' : 'application/json'},
+                            body: JSON.stringify(body)
+                        }).then(response => response.json())
+                        .then(data => {return data }).catch(err => {return data});
+                    },
+                    //this method update the lessons available spaces
+                    updateAvailability(id, quantity)
+                    {
+                        fetch('https://learningbeyond.herokuapp.com/collection/lessons/602c1dd40e4da910ec5b1b6c', { 
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json'},
+                            body: JSON.stringify(
+                                {
+                                    "availableSpaces": quantity
+                                }
+                            )
+                        }).then(response => response.json())
+                        .then(data => {return data }).catch(err => { return data });                        
+                    },
+                    //this methods gets the values and sends to the above method. Also alerts a thank you message once order is confirmed.
+                    confirmCheckout()
+                    {
+                        this.cart.forEach(item => {
+                            let body = {
+                                "name" : this.order.firstName,
+                                "phone": this.order.phoneNum,
+                                "subject": item.subject,
+                                "id": item._id,
+                                "spaces": 5 - item.availableSpaces
+                            };
+                            this.addOrder(body);
+                            this.updateAvailability(item._id, item.availableSpaces);
+                        });
+                        alert("Thank you for the order," + this.order.firstName);
+                        this.cart = [];
+                    },
+
                 },
                 computed:{
                     //returns the item number in cart
