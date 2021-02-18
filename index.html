@@ -2,8 +2,6 @@
     <head>
         <title> Learning Beyond </title>
         <script src = "https://unpkg.com/vue"></script>
-        <!-- link to the js file containing list of lessons-->
-        <!--<script src = "lessons.js"></script>-->
         <!-- link to external css-->
         <link href = "style.css" rel = "stylesheet" type="text/css">
         <!-- link to font awesome , used for icons -->
@@ -291,7 +289,6 @@
                     //gets all the lessons from the database
                     retrieveLessons()
                     {   fetch('https://learningbeyond.herokuapp.com/collection/lessons')
-                        //fetch('http://localhost:3000/collection/lessons')
                             .then(response => response.json())
                             .then(data => this.lesson = data)
                             .catch(error => console.log(error));
@@ -309,7 +306,7 @@
                     //this method update the lessons available spaces
                     updateAvailability(id, quantity)
                     {
-                        fetch('https://learningbeyond.herokuapp.com/collection/lessons/602c1dd40e4da910ec5b1b6c', { 
+                        fetch('https://learningbeyond.herokuapp.com/collection/lessons' + id, {
                             method: 'PUT',
                             headers: { 'Content-Type': 'application/json'},
                             body: JSON.stringify(
@@ -334,8 +331,9 @@
                             this.addOrder(body);
                             this.updateAvailability(item._id, item.availableSpaces);
                         });
+                        //alert a thank you message for the order
                         alert("Thank you for the order," + this.order.firstName);
-                        this.cart = [];
+                        this.cart = [];  //the cart is empty 
                     },
 
                 },
@@ -366,6 +364,7 @@
                         }
                     }
                 },
+                //this will call the method to get the lessons and display it as soon as the page is loaded
                 mounted()
                 {
                     this.retrieveLessons();
